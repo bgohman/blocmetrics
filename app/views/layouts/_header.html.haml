@@ -3,12 +3,6 @@
     .container
       %nav
         %ul
-          .nav.navbar-nav.navbar-left
-            %li
-              = link_to "Blocmetrics", root_path
-            %li
-              = link_to "Aplications", registered_applications_path
-        %ul
           .nav.navbar-nav.navbar-right
             - if current_user
               %li
@@ -20,6 +14,8 @@
             - else
               %li
                 = link_to "Sign in", new_user_session_path
+            %li
+              = link_to "Aplications", registered_applications_path    
             %li
               = link_to "Home", root_path
             %li

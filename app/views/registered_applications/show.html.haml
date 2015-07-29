@@ -1,10 +1,15 @@
 - provide(:title, "#{@registered_application.name}")
 
+
+%h4
+  = @registered_application.name
+%p
+  = @registered_application.url
 %ul
-  %li 
-    = @registered_application.name
-  %li
-    = @registered_application.url
+  - @events.each do |k, v|
+    %li
+      #{k} : #{v.count}
+
     - if policy(@registered_application).edit? 
       %p
         = link_to "Edit", edit_registered_application_path

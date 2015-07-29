@@ -7,6 +7,6 @@ class CreateRegisteredApplications < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_foreign_key :topic, :users
+    add_foreign_key :registered_applications, :users
   end
 end

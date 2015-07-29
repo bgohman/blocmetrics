@@ -1,0 +1,17 @@
+= form_for [registered_application] do |f|
+  - if registered_application.errors.any?
+    .alert.alert-danger
+      %h4 
+        There are
+        = pluralize(registered_application.errors.count, "error")
+      %ul
+        - registered_application.errors.full_messages.each do |msg|
+          %li
+            = msg
+  = f.label :name
+  = f.text_field :name, autofocus: true, class: 'form-control', placeholder: "application Name"
+  = f.label :url
+  = f.text_field :url, class: 'form-control', placeholder: "application url"
+  %br
+  .form-group
+    = f.submit "Save", class: 'btn btn-success'

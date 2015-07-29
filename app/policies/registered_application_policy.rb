@@ -1,0 +1,2 @@
+class RegisteredApplicationPolicy < ApplicationPolicy
+end

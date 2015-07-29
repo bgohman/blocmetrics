@@ -4,6 +4,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  include Pundit
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   protected
 
     def configure_permitted_parameters
@@ -11,5 +14,9 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.for(:account_update) << :name
     end
 
+    def user_not_authorized
+      flash[:error] = 'You are only allowed to edit or delete items that you created.'
+      redirect_to(request.referrer || root_path)
+    end
 
 end

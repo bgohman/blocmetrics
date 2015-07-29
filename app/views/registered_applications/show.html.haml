@@ -1,0 +1,11 @@
+- provide(:title, "#{@registered_application.name}")
+
+%ul
+  %li 
+    = @registered_application.name
+  %li
+    = @registered_application.url
+    - if policy(@registered_application).edit? 
+      %p
+        = link_to "Edit", edit_registered_application_path
+        = link_to "Delete", @registered_application, method: :delete, data: { confirm: 'Remove this application for sure?' }

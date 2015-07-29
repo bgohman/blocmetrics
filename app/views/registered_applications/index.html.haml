@@ -1,0 +1,18 @@
+- provide(:title, "Applications")
+.row
+  .col-md-8
+  %h1 Applications registered with Blocmetrics
+  .col-md-4
+  = link_to "Register a new application", new_registered_application_path, class: 'btn btn-success'
+  - @registered_applications.each do |application|
+    .media
+      .media-body
+        %h4
+          .media-heading
+            %ul
+              %li
+                = link_to application.name, application
+                - if policy(application).edit?
+                  %p
+                    = link_to "Edit", edit_registered_application_path(application)
+                    = link_to "Delete", application, method: :delete, data: { confirm: 'Remove this application for sure?' }

@@ -42,7 +42,8 @@ end
 100.times do
   Event.create!(
     name: events.sample,
-    registered_application: apps.sample
+    registered_application: apps.sample,
+    created_at: Faker::Time.between(60.days.ago, Time.now, :all)
     )
 end
 

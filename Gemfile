@@ -17,6 +17,8 @@ gem 'stripe'
 gem 'redcarpet'
 gem 'haml'
 gem 'friendly_id'
+gem 'chartkick'
+gem 'groupdate'
 
 group :production do
    gem 'pg'
@@ -24,7 +26,7 @@ group :production do
  end
  
  group :development do
-   gem 'sqlite3'
+   gem 'pg'
    gem 'rails-erd'
    gem 'pry-rails'
  end

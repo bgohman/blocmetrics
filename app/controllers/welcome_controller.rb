@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   def index
-    redirect_to getting_started_path if current_user
+    redirect_to registered_applications_path if current_user
   end
 
   def about

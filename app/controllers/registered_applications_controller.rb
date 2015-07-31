@@ -10,7 +10,7 @@ class RegisteredApplicationsController < ApplicationController
     @registered_application.user = current_user
     if @registered_application.save
       flash[:notice] = "Application was registered."
-      redirect_to help_path
+      redirect_to getting_started_path
     else
       flash[:error] = "There was an error registering the application.  Please try again."
       render :new
@@ -36,6 +36,7 @@ class RegisteredApplicationsController < ApplicationController
 
   def index
     @registered_applications = current_user.registered_applications
+    redirect_to getting_started_path if @registered_applications.count == 0
   end
 
   def show

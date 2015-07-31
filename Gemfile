@@ -19,14 +19,14 @@ gem 'haml'
 gem 'friendly_id'
 gem 'chartkick'
 gem 'groupdate'
+gem 'pg'
+
 
 group :production do
-   gem 'pg'
    gem 'rails_12factor'
  end
  
  group :development do
-   gem 'pg'
    gem 'rails-erd'
    gem 'pry-rails'
  end

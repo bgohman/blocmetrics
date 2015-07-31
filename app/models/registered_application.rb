@@ -7,4 +7,7 @@ class RegisteredApplication < ActiveRecord::Base
   validates :user, presence: true
   validates_uniqueness_of :url, scope: :user_id
   validates_uniqueness_of :name, scope: :user_id
+
+  extend FriendlyId
+  friendly_id :name, use: :slugged
 end

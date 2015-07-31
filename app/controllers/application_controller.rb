@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     end
 
     def user_not_authorized
-      flash[:error] = 'You are only allowed to edit or delete items that you created.'
+      flash[:error] = 'You are only allowed to view your own applications.'
       redirect_to(request.referrer || root_path)
     end
 

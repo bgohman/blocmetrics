@@ -6,18 +6,19 @@
           .nav.navbar-nav.navbar-right
             - if current_user
               %li
-                = link_to "Hello, #{current_user.name.capitalize}!", current_user
+                = link_to "Hello, #{current_user.name.capitalize}!", edit_user_registration_path(current_user)   
               %li
-                = link_to "Settings", edit_user_registration_path(current_user)
+                = link_to "My Apps", registered_applications_path  
+              %li
+                = link_to "Add an App", new_registered_application_path 
               %li
                 = link_to "Sign out", destroy_user_session_path, method: :delete
             - else
               %li
                 = link_to "Sign in", new_user_session_path
+              %li
+                = link_to "Sign Up", new_user_registration_path
             %li
-              = link_to "Aplications", registered_applications_path    
-            %li
-              = link_to "Home", root_path
-            %li
-              = link_to "About", about_path
+              = link_to "Help", getting_started_path 
+
 

@@ -10,7 +10,7 @@ class RegisteredApplicationsController < ApplicationController
     @registered_application.user = current_user
     if @registered_application.save
       flash[:notice] = "Application was registered."
-      redirect_to registered_applications_path
+      redirect_to help_path
     else
       flash[:error] = "There was an error registering the application.  Please try again."
       render :new
@@ -18,12 +18,12 @@ class RegisteredApplicationsController < ApplicationController
   end
 
   def edit
-    @registered_application = RegisteredApplication.find(params[:id])
+    @registered_application = RegisteredApplication.friendly.find(params[:id])
     authorize @registered_application
   end
 
   def update
-    @registered_application = RegisteredApplication.find(params[:id])
+    @registered_application = RegisteredApplication.friendly.find(params[:id])
     authorize @registered_application
     if @registered_application.update_attributes(registered_application_params)
       flash[:notice] = "Application information was updated."
@@ -35,17 +35,18 @@ class RegisteredApplicationsController < ApplicationController
   end
 
   def index
-    @registered_applications = RegisteredApplication.all
+    @registered_applications = current_user.registered_applications
   end
 
   def show
-    @registered_application = RegisteredApplication.find(params[:id])
+    @registered_application = RegisteredApplication.friendly.find(params[:id])
     authorize @registered_application
     @events = @registered_application.events.group_by(&:name)
+    render :show
   end
 
   def destroy
-    @registered_application = RegisteredApplication.find(params[:id])
+    @registered_application = RegisteredApplication.friendly.find(params[:id])
     authorize @registered_application
     if @registered_application.destroy
       flash[:notice] = "\"#{@registered_application.name}\" was deleted successfully."

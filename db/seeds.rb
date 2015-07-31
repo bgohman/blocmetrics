@@ -2,8 +2,6 @@ Event.destroy_all
 User.destroy_all
 RegisteredApplication.destroy_all 
 
-require 'Faker'
-
 admin = User.new(
   name:     'Admin User',
   email:    'admin@example.com',
@@ -36,10 +34,12 @@ apps = RegisteredApplication.all
 
 events = []
 6.times do
+  require 'Faker'
   events << Faker::Lorem.word
 end
 
 100.times do
+  require 'Faker'
   Event.create!(
     name: events.sample,
     registered_application: apps.sample,

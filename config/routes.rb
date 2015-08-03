@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :users, only: :show
   resources :registered_applications
 
+  match '*any' => 'application#options', :via => [:options]
   namespace :api, defaults: { format: :json } do
     match 'create_event', to: 'events#create', via: [:options]
     resources :events, only: [:create]
